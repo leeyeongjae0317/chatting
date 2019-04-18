@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.happy.chat.board">
+	
+
+	<select id="selectBoard" parameterType="java.lang.String" resultType="BDto">
+		SELECT SEQ, CHATMEMBER, CONTENT, RECENTDATE
+		FROM CHATBOARD
+		WHERE CHATMEMBER = #{chatmember}
+	</select>
+	
+	<insert id="insertChatRoom" parameterType="BDto">
+		INSERT INTO CHATBOARD(SEQ, CHATMEMBER, CONTENT, RECENTDATE) 
+			VALUES(CHATBOARD_SEQ.NEXTVAL, #{chatmember}, #{content}, SYSDATE)
+	</insert>
+
+	<update id="updateBoard" parameterType="BDto">
+		UPDATE CHATBOARD
+		SET CONTENT=#{content}, RECENTDATE=SYSDATE
+		WHERE CHATMEMBER=#{chatmember}
+	</update>
+
+	<select id="selectMyChatList" parameterType="java.lang.String" resultType="BDto">
+		SELECT CHATMEMBER
+		FROM CHATBOARD
+		WHERE SUBSTR(CHATMEMBER, 1, INSTR(CHATMEMBER, ',', 1, 1)-1) = #{id}
+		OR SUBSTR(CHATMEMBER, INSTR(CHATMEMBER, ',', 1, 1)) = #{id}
+	</select>
+	
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.happy.chat.dtos.ChatBoard_Dto" alias="BDto"/>
+		<typeAlias type="com.happy.chat.dtos.ChatUser_Dto" alias="UDto"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="/sqlMap/ChatBoard.xml"/>
+		<mapper resource="/sqlMap/ChatUser.xml"/>
+	</mappers>
+</configuration>
